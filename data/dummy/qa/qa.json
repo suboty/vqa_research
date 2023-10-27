@@ -1,0 +1,22 @@
+{
+  "1.jpeg": {
+    "questions": ["Is there a person in this picture?"],
+    "answers": ["Yes"]
+  },
+  "2.jpeg": {
+    "questions": ["Is there a person in this picture?", "Is there a kangaroo in this picture?"],
+    "answers": ["Yes", "No"]
+  },
+  "3.jpeg": {
+    "questions": ["Is there a person in this picture?", "Is the animal sitting in the photo?"],
+    "answers": ["No", "No"]
+  },
+  "4.jpeg": {
+    "questions": ["Is there a person in this picture?", "Who is in the photo?"],
+    "answers": ["No", "A dog"]
+  },
+  "5.jpeg": {
+    "questions": ["Is there a person in this picture?", "Is there a kangaroo in this picture?"],
+    "answers": ["No", "Yes"]
+  }
+}
