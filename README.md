@@ -1,1 +1,1 @@
-# vqa_research
+# vqa_research v0.2.0
