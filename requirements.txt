@@ -1,2 +1,7 @@
+# Base
 numpy==1.26.1
 pillow==10.1.0
+
+# BLIP
+transformers==4.34.1
+torch==2.1.0
