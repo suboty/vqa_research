@@ -1,13 +1,14 @@
 __reference__ = 'https://github.com/GT-Vision-Lab/VQA/blob/master/PythonEvaluationTools/vqaEvaluation/vqaEval.py'
 
 import re
+from abc import ABC
 from typing import Dict
 
 from src import logger
 from src.metrics import MetricMeta
 
 
-class VQAAccuracy(MetricMeta):
+class VQAAccuracy(MetricMeta, ABC):
 
     __name__ = 'VQA Accuracy'
 

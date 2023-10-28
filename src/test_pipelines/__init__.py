@@ -5,8 +5,10 @@ from src import logger
 
 DatasetType = TypeVar("DatasetType")
 
+ModelType = TypeVar("ModelType")
 
-class TestPipelineMeta(Generic[DatasetType]):
+
+class TestPipelineMeta(Generic[DatasetType, ModelType]):
 
     __name__ = 'Meta Test Pipeline'
 
@@ -21,7 +23,7 @@ class TestPipelineMeta(Generic[DatasetType]):
         logger.debug(f'Dataset {dataset.__name__ if dataset.__name__ else ""} is appended to test datasets')
 
     @abstractmethod
-    def add_model(self, model: Callable):
+    def add_model(self, model: ModelType):
         self.models.append(model)
         logger.debug(f'Model {model.__name__ if model.__name__ else ""} is appended to models for testing')
 

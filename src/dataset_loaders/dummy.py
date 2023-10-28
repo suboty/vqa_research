@@ -1,16 +1,16 @@
 import os
 import json
+from abc import ABC
 from pathlib import Path
 from typing import List, Dict, Optional
 
 import numpy as np
 from PIL import Image
 
-from src import logger
 from src.dataset_loaders import DatasetLoaderMeta
 
 
-class DummyDatasetLoader(DatasetLoaderMeta):
+class DummyDatasetLoader(DatasetLoaderMeta, ABC):
     __name__ = 'Dummy Dataset'
 
     def __init__(self,

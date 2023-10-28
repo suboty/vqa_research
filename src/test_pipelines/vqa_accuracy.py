@@ -1,10 +1,11 @@
+from abc import ABC
 from src.test_pipelines import TestPipelineMeta
 
 from src import logger
 from src.metrics import print_metrics_results
 
 
-class VQAAccuracyTestPipeline(TestPipelineMeta):
+class VQAAccuracyTestPipeline(TestPipelineMeta, ABC):
 
     __name__ = 'VQA Accuracy Test Pipeline'
 

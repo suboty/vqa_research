@@ -17,13 +17,12 @@ class PipelineMeta(Generic[NumpyArrayType, PathToModel]):
 
     def __init__(self, path_to_model: Optional[Union[Path, str]] = None):
         try:
-            logger.info(f'Downloading of {self.__name__} model starts...')
+            logger.info(f'Downloading of {self.__name__} starts...')
             self.model = self.load_model(path_to_model=path_to_model)
-            logger.info(f'Downloading of {self.__name__} model is done!')
+            logger.info(f'Downloading of {self.__name__} is done!')
         except Exception as e:
             logger.error(f'Model {self.__name__} loading is invalid! Error: {e}')
             raise e
-
 
     @abstractmethod
     def load_model(self, path_to_model: PathToModel) -> None:
