@@ -23,8 +23,8 @@ class DummyDatasetLoader(DatasetLoaderMeta, ABC):
         self.qa = {}
 
     def load_data(self,
-                  links_for_data: List[str],
-                  path_to_data: Path) -> None:
+                  links_for_data=None,
+                  path_to_data: Path = Path()) -> None:
 
         with open(Path(self.path_to_data, 'qa', 'qa.json'), 'r') as qa_file:
             self.qa = json.load(qa_file)
