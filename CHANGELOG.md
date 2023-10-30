@@ -1,3 +1,7 @@
+# 0.2.1
+### *30-10-2023*
+ - Add all BLIP`s models for testing fron 1st generation in HuggingFace
+ - Fix error in testing pipeline
 # 0.2.0
 ### *28-10-2023*
  - Add BLIP model for testing
