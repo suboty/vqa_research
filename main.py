@@ -1,9 +1,9 @@
 from pathlib import Path
 
+from tqdm import tqdm
 
 from src.metrics.vqa_accuracy import VQAAccuracy
 from src.test_pipelines.vqa_accuracy import VQAAccuracyTestPipeline
-from src.pipelines.dummy import DummyPipeline
 from src.pipelines.blip import BlipPipeline
 from src.dataset_loaders.dummy import DummyDatasetLoader
 
@@ -13,17 +13,24 @@ if __name__ == '__main__':
     dummy_dataset = DummyDatasetLoader(path_to_data=Path('data', 'dummy'))
     dummy_dataset.load_data()
 
-    dummy_metric = VQAAccuracy()
+    vqa_accuracy_metric = VQAAccuracy()
+    classic_test_pipeline = VQAAccuracyTestPipeline()
 
-    dummy_pipeline = DummyPipeline()
-    blip_pipeline = BlipPipeline('Salesforce/blip-vqa-capfilt-large')
+    classic_test_pipeline.add_test_dataset(dummy_dataset)
+    classic_test_pipeline.add_metric(vqa_accuracy_metric)
 
-    dummy_test_pipeline = VQAAccuracyTestPipeline()
+    blips = ['Salesforce/blip-image-captioning-large',
+             'Salesforce/blip-image-captioning-base',
+             'Salesforce/blip-vqa-base',
+             'Salesforce/blip-vqa-capfilt-large',
+             'Salesforce/blip-itm-base-coco',
+             'Salesforce/blip-itm-large-coco',
+             'Salesforce/blip-itm-base-flickr',
+             'Salesforce/blip-itm-large-flickr']
 
-    # create test pipeline
-    dummy_test_pipeline.add_test_dataset(dummy_dataset)
-    dummy_test_pipeline.add_metric(dummy_metric)
-    dummy_test_pipeline.add_model(blip_pipeline)
+    for blip_name in tqdm(blips):
+        blip_pipeline = BlipPipeline(blip_name)
+        classic_test_pipeline.add_model(blip_pipeline)
 
     # run tests
-    dummy_test_pipeline.test()
+    classic_test_pipeline.test()

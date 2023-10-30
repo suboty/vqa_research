@@ -4,7 +4,8 @@ from typing import List
 import numpy as np
 from transformers import AutoProcessor, BlipForQuestionAnswering
 
-from src.pipelines import PipelineMeta
+from src import logger
+from src.pipelines import PipelineMeta, ModelError
 
 
 class BlipPipeline(PipelineMeta, ABC):
@@ -24,7 +25,12 @@ class BlipPipeline(PipelineMeta, ABC):
     def predict(self, image: np.array, batch_questions: np.array) -> List[np.array]:
         batch_answers = []
         for question in batch_questions:
-            inputs = self.processor(images=image, text=question, return_tensors="pt")
-            batch_answers.append(self.processor.decode(self.model.generate(**inputs)[0],
-                                                       skip_special_tokens=True))
+            try:
+                inputs = self.processor(images=image, text=question, return_tensors="pt")
+                batch_answers.append(self.processor.decode(self.model.generate(**inputs)[0],
+                                                           skip_special_tokens=True))
+            except Exception as e:
+                logger.error(f'BLIP model {self.__name__} is aborted! Error: {e}')
+                raise ModelError(f'BLIP model {self.__name__} is aborted! Error: {e}')
+
         return batch_answers
