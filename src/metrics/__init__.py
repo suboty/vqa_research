@@ -27,12 +27,10 @@ def print_metrics_results(metric_results: Dict,
     answer_repr = ''
     answer_repr_ = {}
     for i, metric_result_key in enumerate(metric_results.keys()):
-        from src import logger
-        logger.info(metric_result_key)
         answer_repr_[i] = f'{metric_name.upper()}: ' \
                           f'{regexp_model_name.findall(metric_result_key)[0]} | ' \
                           f'{regexp_dataset_name.findall(metric_result_key)[0]} | ' \
-                          f'{metric_results[metric_result_key]:.2f}'
+                          f'{metric_results[metric_result_key]:.2f}\n'
 
     for key in list(answer_repr_.keys()):
         answer_repr += answer_repr_[key]

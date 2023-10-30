@@ -11,6 +11,10 @@ NumpyArrayType = TypeVar("NumpyArrayType", bound=ArrayLike)
 PathToModel = TypeVar("PathToModel")
 
 
+class ModelError(Exception):
+    pass
+
+
 class PipelineMeta(Generic[NumpyArrayType, PathToModel]):
 
     __name__ = 'Meta Pipeline'
